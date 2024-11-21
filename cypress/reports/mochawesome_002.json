@@ -1,0 +1,131 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-11-21T13:02:26.658Z",
+    "end": "2024-11-21T13:02:34.873Z",
+    "duration": 8215,
+    "testsRegistered": 2,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7af977a4-a2a9-4fbf-910e-c42712c7ada6",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cypress\\e2e\\OpexAsignUp.cy.js",
+      "file": "cypress\\e2e\\cypress\\e2e\\OpexAsignUp.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e09f52b7-645b-4884-bfdc-22c362bcf527",
+          "title": "OpexA SignUp flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "OpexA signup and OTP retrieval",
+              "fullTitle": "OpexA SignUp flow OpexA signup and OTP retrieval",
+              "timedOut": null,
+              "duration": 5292,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://opexa-user-client-staging-833597492714.us-central1.run.app/');\n// Initiate signup process\ncy.get('.gap-3 > [href=\"/auth/register\"] > .inline-flex').click();\ncy.contains('Create Account').click();\ncy.get('.flex-col > .flex').clear(emailAddress);\ncy.get('.flex-col > .flex').type(emailAddress);\ncy.contains('Next').click();\n// Retrieve OTP from email\ncy.mailosaurGetMessage(serverId, {\n  sentTo: emailAddress,\n  receivedAfter\n}, {\n  timeout: 60000\n}).then(email => {\n  // Parse email to locate the OTP\n  const parser = new DOMParser();\n  const doc = parser.parseFromString(email.html.body, 'text/html');\n  const otpElement = Array.from(doc.querySelectorAll('p')).find(p => p.textContent.includes('Enter OTP:'));\n  const otpCode = otpElement ? otpElement.textContent.match(/\\d{4}/)[0].trim() : null;\n  cy.log(`OTP Code: ${otpCode}`);\n  cy.wrap(otpCode).as('otpCode');\n  // Enter OTP code\n  cy.get('[style=\"position: absolute; inset: 0px; pointer-events: none;\"] > .disabled\\\\:cursor-not-allowed').clear(otpCode);\n  cy.get('[style=\"position: absolute; inset: 0px; pointer-events: none;\"] > .disabled\\\\:cursor-not-allowed').type(otpCode);\n  cy.get('.flex.h-full > .flex-col > :nth-child(2) > .flex').clear('T');\n  cy.get('.flex.h-full > .flex-col > :nth-child(2) > .flex').type('Testqa1101$');\n  cy.get(':nth-child(4) > .flex').clear();\n  cy.get(':nth-child(4) > .flex').type('Testqa1101$');\n  cy.get('.z-0 > .text-center').click();\n  cy.get('#First\\\\ Name').clear('o');\n  cy.get('#First\\\\ Name').type('olamide');\n  cy.get('#Last\\\\ Name').clear();\n  cy.get('#Last\\\\ Name').type('john');\n  cy.get('#Middle\\\\ Name\\\\ \\\\(optional\\\\)').clear();\n  cy.get('#Middle\\\\ Name\\\\ \\\\(optional\\\\)').type('AAA');\n  cy.get('.z-0 > .text-center').click();\n  cy.contains('Confirm').click();\n});",
+              "err": {
+                "message": "CypressError: `cy.type()` failed because it targeted a disabled element.\n\nThe element typed into was:\n\n  > <input type=\"text\" class=\"flex h-10 border bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-opexa-blue disabled:cursor-not-allowed disabled:opacity-50 border-[#10182877] w-full py-6 px-2 rounded-md mb-6 placeholder:text-sm text-sm\" placeholder=\"example@mail.com\" name=\"email\" value=\"\">\n\nEnsure the element does not have an attribute named `disabled` before typing into it.\n\nhttps://on.cypress.io/type",
+                "estack": "CypressError: `cy.type()` failed because it targeted a disabled element.\n\nThe element typed into was:\n\n  > <input type=\"text\" class=\"flex h-10 border bg-background ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-opexa-blue disabled:cursor-not-allowed disabled:opacity-50 border-[#10182877] w-full py-6 px-2 rounded-md mb-6 placeholder:text-sm text-sm\" placeholder=\"example@mail.com\" name=\"email\" value=\"\">\n\nEnsure the element does not have an attribute named `disabled` before typing into it.\n\nhttps://on.cypress.io/type\n    at <unknown> (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:115630:78)\n    at tryCatcher (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:1724:18)\n    at _drainQueueStep (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:2430:12)\n    at _drainQueue (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (https://opexa-user-client-staging-833597492714.us-central1.run.app/__cypress/runner/cypress_runner.js:2309:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://opexa-cypress-codes/./cypress/e2e/cypress/e2e/OpexAsignUp.cy.js:22:36)",
+                "diff": null
+              },
+              "uuid": "c7c56928-832d-4a87-b62f-7b7bf4b2fa50",
+              "parentUUID": "e09f52b7-645b-4884-bfdc-22c362bcf527",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "OpexA assertion",
+              "fullTitle": "OpexA SignUp flow OpexA assertion",
+              "timedOut": null,
+              "duration": 537,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://opexa-user-client-staging-833597492714.us-central1.run.app/');\ncy.get('.flex-col > .max-w-2xl').should('have.text', 'Unlocking Your Full Potential in Tech');\ncy.get('.md\\\\:flex-row > .flex-col > .w-full').should('have.text', 'Chart your unique career path, elevate your skills, and achieve your highest ambitions with OpexA, your ultimate career companion.');\ncy.get('.w-20').should('be.visible');\ncy.get('.gap-8 > :nth-child(1) > [href=\"/\"] > img').should('be.visible');\ncy.get('.hidden > :nth-child(1) > a').should('be.visible');\ncy.get('.gap-8 > .hidden > :nth-child(2) > .font-medium').should('be.visible');\ncy.get('.hidden > :nth-child(3) > .font-medium').should('be.visible');\ncy.get('.hidden > :nth-child(4) > .font-medium').should('be.visible');\ncy.get('.text-white.flex > .flex-col > :nth-child(1) > p').should('have.text', 'info@opexa.org');\ncy.get('.text-white.flex > .flex-col > :nth-child(2) > p').should('have.text', '+234 905 074 2802');\ncy.get('.text-white.flex > :nth-child(2) > p').should('have.text', '7b, Ibeju Lekki Street, Dolphin Estate, Ikoyi, Lagos, Nigeria.');\ncy.get('[href=\"/terms\"] > .md\\\\:border-r').should('be.visible');\ncy.get('.md\\\\:text-center').should('have.text', 'Copyright © 2024 OpexA Ltd');",
+              "err": {},
+              "uuid": "353ee772-d413-4852-a258-b63dcb18cb13",
+              "parentUUID": "e09f52b7-645b-4884-bfdc-22c362bcf527",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "353ee772-d413-4852-a258-b63dcb18cb13"
+          ],
+          "failures": [
+            "c7c56928-832d-4a87-b62f-7b7bf4b2fa50"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 5829,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true,
+        "reportTitle": "Test Report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

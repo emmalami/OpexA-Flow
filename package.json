@@ -1,0 +1,24 @@
+{
+  "name": "opexa-cypress-codes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cypress-downloadfile": "^1.2.4",
+    "cypress-mailosaur": "^2.16.0",
+    "dotenv": "^16.4.5",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  },
+  "devDependencies": {
+    "cypress": "^13.16.0",
+    "cypress-file-upload": "^5.0.8",
+    "mochawesome": "^7.1.3"
+  }
+}
