@@ -1,0 +1,126 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-11-22T07:49:15.068Z",
+    "end": "2024-11-22T07:49:48.171Z",
+    "duration": 33103,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5dcf88e9-89e5-45f2-b7ff-5eedd592234c",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cypress\\e2e\\OpexAsignUp.cy.js",
+      "file": "cypress\\e2e\\cypress\\e2e\\OpexAsignUp.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2ceeb7f0-f87d-444d-9143-cf8cd410ca39",
+          "title": "OpexA SignUp flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "OpexA signup and OTP retrieval",
+              "fullTitle": "OpexA SignUp flow OpexA signup and OTP retrieval",
+              "timedOut": null,
+              "duration": 27770,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://opexa-user-client-staging-833597492714.us-central1.run.app/');\n// Initiate signup process\ncy.get('.gap-3 > [href=\"/auth/register\"] > .inline-flex').click();\ncy.contains('Create Account').click();\ncy.get('.flex-col > .flex').clear(emailAddress);\ncy.get('.flex-col > .flex').type(emailAddress);\ncy.contains('Next').click();\n// Retrieve OTP from email\ncy.mailosaurGetMessage(serverId, {\n  sentTo: emailAddress,\n  receivedAfter\n}, {\n  timeout: 60000\n}).then(email => {\n  // Parse email to locate the OTP\n  const parser = new DOMParser();\n  const doc = parser.parseFromString(email.html.body, 'text/html');\n  const otpElement = Array.from(doc.querySelectorAll('p')).find(p => p.textContent.includes('Enter OTP:'));\n  const otpCode = otpElement ? otpElement.textContent.match(/\\d{4}/)[0].trim() : null;\n  cy.log(`OTP Code: ${otpCode}`);\n  cy.wrap(otpCode).as('otpCode');\n  // Enter OTP code\n  cy.get('[style=\"position: absolute; inset: 0px; pointer-events: none;\"] > .disabled\\\\:cursor-not-allowed').clear(otpCode);\n  cy.get('[style=\"position: absolute; inset: 0px; pointer-events: none;\"] > .disabled\\\\:cursor-not-allowed').type(otpCode);\n  cy.get('.flex.h-full > .flex-col > :nth-child(2) > .flex').clear('T');\n  cy.get('.flex.h-full > .flex-col > :nth-child(2) > .flex').type('Testqa1101$');\n  cy.get(':nth-child(4) > .flex').clear();\n  cy.get(':nth-child(4) > .flex').type('Testqa1101$');\n  cy.get('.z-0 > .text-center').click();\n  cy.get('#First\\\\ Name').clear('o');\n  cy.get('#First\\\\ Name').type('olamide');\n  cy.get('#Last\\\\ Name').clear();\n  cy.get('#Last\\\\ Name').type('john');\n  cy.get('#Middle\\\\ Name\\\\ \\\\(optional\\\\)').clear();\n  cy.get('#Middle\\\\ Name\\\\ \\\\(optional\\\\)').type('AAA');\n  cy.get('.z-0 > .text-center').click();\n  cy.contains('Confirm').click();\n});",
+              "err": {},
+              "uuid": "8da35ab4-90e4-49c7-867d-0c08e77839db",
+              "parentUUID": "2ceeb7f0-f87d-444d-9143-cf8cd410ca39",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "OpexA assertion",
+              "fullTitle": "OpexA SignUp flow OpexA assertion",
+              "timedOut": null,
+              "duration": 2248,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://opexa-user-client-staging-833597492714.us-central1.run.app/');\ncy.get('.flex-col > .max-w-2xl').should('have.text', 'Unlocking Your Full Potential in Tech');\ncy.get('.md\\\\:flex-row > .flex-col > .w-full').should('have.text', 'Chart your unique career path, elevate your skills, and achieve your highest ambitions with OpexA, your ultimate career companion.');\ncy.get('.w-20').should('be.visible');\ncy.get('.gap-8 > :nth-child(1) > [href=\"/\"] > img').should('be.visible');\ncy.get('.hidden > :nth-child(1) > a').should('be.visible');\ncy.get('.gap-8 > .hidden > :nth-child(2) > .font-medium').should('be.visible');\ncy.get('.hidden > :nth-child(3) > .font-medium').should('be.visible');\ncy.get('.hidden > :nth-child(4) > .font-medium').should('be.visible');\ncy.get('.text-white.flex > .flex-col > :nth-child(1) > p').should('have.text', 'info@opexa.org');\ncy.get('.text-white.flex > .flex-col > :nth-child(2) > p').should('have.text', '+234 905 074 2802');\ncy.get('.text-white.flex > :nth-child(2) > p').should('have.text', '7b, Ibeju Lekki Street, Dolphin Estate, Ikoyi, Lagos, Nigeria.');\ncy.get('[href=\"/terms\"] > .md\\\\:border-r').should('be.visible');\ncy.get('.md\\\\:text-center').should('have.text', 'Copyright © 2024 OpexA Ltd');",
+              "err": {},
+              "uuid": "8096c2a8-2cf6-489d-81f1-dc28380da195",
+              "parentUUID": "2ceeb7f0-f87d-444d-9143-cf8cd410ca39",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8da35ab4-90e4-49c7-867d-0c08e77839db",
+            "8096c2a8-2cf6-489d-81f1-dc28380da195"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 30018,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true,
+        "reportTitle": "Test Report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

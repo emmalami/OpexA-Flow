@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-11-22T07:49:55.446Z",
+    "end": "2024-11-22T07:49:58.825Z",
+    "duration": 3379,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "db5141de-61db-4d0e-a371-2e72f4006229",
+      "title": "",
+      "fullFile": "cypress\\e2e\\cypress\\e2e\\upload_DownloadFile.cy.js",
+      "file": "cypress\\e2e\\cypress\\e2e\\upload_DownloadFile.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ad28e6be-e9c2-4b9f-b51e-a3199367e7e1",
+          "title": "reading file in cypress",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "testing multiple login",
+              "fullTitle": "reading file in cypress testing multiple login",
+              "timedOut": null,
+              "duration": 747,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('https://trytestingthis.netlify.app');\ncy.get('#myfile').attachFile('Messi_inArsenal.jfif');\ncy.fixture('example.json').then(data => {\n  cy.log(data.name);\n  cy.log(data.email);\n});",
+              "err": {},
+              "uuid": "c1ccbf33-736d-46fb-920a-b55a67cc579b",
+              "parentUUID": "ad28e6be-e9c2-4b9f-b51e-a3199367e7e1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c1ccbf33-736d-46fb-920a-b55a67cc579b"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 747,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true,
+        "reportTitle": "Test Report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
