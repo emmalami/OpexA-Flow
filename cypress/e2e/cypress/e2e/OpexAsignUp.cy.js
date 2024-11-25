@@ -55,7 +55,6 @@ describe('OpexA SignUp flow', () => {
     });
 
 
-
     it('OpexA assertion', function() {
         cy.visit('https://opexa-user-client-staging-833597492714.us-central1.run.app/');
         cy.get('.flex-col > .max-w-2xl').should('have.text', 'Unlocking Your Full Potential in Tech');
