@@ -8,6 +8,6 @@ const login = new loginPage   //class name is the new login
         login.homepage_login()
         login.Username('qatester@opexconsult.co.uk')
         login.Password('Testqa1101')
-        login.clickLogin()           
+        login.clickLogin()                  
 
     })
